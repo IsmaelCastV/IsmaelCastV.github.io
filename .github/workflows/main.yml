@@ -14,10 +14,15 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       
-    - name: Build
+    - name: Configure Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.18.4'
+      
+    - name: Install
       run: |
-        npm install
-        npm run-script build
+        npm ci
+        npm run build
       env:
           DB_NAME: ${{secrets.DB_NAME}}
           DB_PWD: ${{secrets.DB_PWD}}
