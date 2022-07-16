@@ -4,7 +4,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      [main]
+      - main
 
 jobs:
   build-and-deploy:
@@ -12,17 +12,19 @@ jobs:
     
     steps:
     - name: Checkout
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
       
     - name: Build
       run: |
         npm install
         npm run-script build
+      env:
+          DB_NAME: ${{secrets.DB_NAME}}
+          DB_PWD: ${{secrets.DB_PWD}}
         
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-          DB_NAME: ${{secrets.DB_NAME}}
-          DB_PWD: ${{secrets.DB_PWD}}
-          BRANCH: gh-pages
-          FOLDER: build
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: build
