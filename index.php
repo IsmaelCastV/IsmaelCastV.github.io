@@ -10,7 +10,9 @@
     if( isset($_POST['oName']) && isset($_POST['pNum']) && isset($_POST['email']) && isset($_POST['rName'])
     && isset($_POST['rAdd']) && isset($_POST['pass']) ){
 
-        //echo password_hash($_POST['pass'], PASSWORD_DEFAULT);
+        $_POST['pass'] = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+
+        echo ("<p>New Pass:".$_POST['pass']."</p>");
 
             $sql = "INSERT INTO restaurants(owner_name, phone_number, email, rest_name, rest_add, pwd_hash) 
                 VALUES(:oName, :pNum, :email, :rName, :rAdd, :pass)";
