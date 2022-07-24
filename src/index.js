@@ -26,7 +26,7 @@ addSignUpForm.addEventListener('submit', (e) =>{
         email: addSignUpForm.email.value,
         restaurant_addres: addSignUpForm.rAdd.value,
         password: addSignUpForm.pass.value
-    })
+    }) 
 
     addSignUpForm.reset();
 })
