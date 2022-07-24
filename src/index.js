@@ -18,7 +18,7 @@ const addSignUpForm = document.querySelector('.signup')
 addSignUpForm.addEventListener('submit', (e) =>{
     e.preventDefault();
 
-    const reference = ref(db, 'users/');
+    const reference = ref(db, 'users/' + addSignUpForm.userId.value); 
 
     set(reference, {
         owner_name: addSignUpForm.oName.value,
